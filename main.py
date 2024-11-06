@@ -12,7 +12,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-def main():
+def run_bot():
     """Run the bot."""
     # Get only the Telegram Bot Token
     bot_token, _, _ = load_config()
@@ -31,5 +31,5 @@ def main():
     # Run the bot
     application.run_polling()
 
-if __name__ == "__main__":
-    main()
+# Directly run the bot
+run_bot()
