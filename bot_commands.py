@@ -1,4 +1,4 @@
-from db import get_user_data, delete_user_data, register_user
+from db import delete_user_data, register_user, get_shortlisted_companies
 
 
 async def start(update, context):
@@ -61,19 +61,9 @@ async def delete(update, context):
 
 
 async def status(update, context):
-    """Handle /status command."""
     chat_id = update.message.chat_id
-    user_data = get_user_data(chat_id)  # Retrieve user data from the database
+    # Call the function without await since it's a regular (synchronous) function
+    status_message = get_shortlisted_companies(chat_id)
 
-    if user_data:
-        reg_number, shortlisted_companies = user_data
-
-        # Check if shortlisted_companies is None or empty
-        if shortlisted_companies:
-            status_message = f"Your registration number: {reg_number}\nShortlisted Companies: {', '.join(shortlisted_companies)}"
-        else:
-            status_message = f"Your registration number: {reg_number}\nShortlisted Companies: No data available"
-    else:
-        status_message = "No data found.\nPlease register first using /register <registration_number>."
-
+    # Send the status message back to the user
     await update.message.reply_text(status_message)

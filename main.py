@@ -4,7 +4,6 @@ from telegram.ext import Application, CommandHandler
 
 from bot_commands import start, help, live, status, register, delete
 from config import load_config
-from db import create_tables
 
 # Setup logging
 logging.basicConfig(
@@ -13,12 +12,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Initialize the tables when the bot starts
-create_tables()
-
 def main():
     """Run the bot."""
-    bot_token = load_config()  # Load the bot token from config file
+    # Get only the Telegram Bot Token
+    bot_token, _, _ = load_config()
 
     # Create the application instance
     application = Application.builder().token(bot_token).build()
