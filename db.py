@@ -33,12 +33,6 @@ def register_user(chat_id, reg_number):
             return False  # Registration failed
 
 
-def get_user_data(chat_id):
-    """Retrieve user data based on chat_id."""
-    response = supabase.table('users').select('reg_number', 'shortlisted_companies').eq('chat_id', chat_id).execute()
-    return response.data[0] if response.data else None
-
-
 def delete_user_data(chat_id):
     """Delete the user data for the given chat_id."""
     # Perform the delete operation
@@ -66,14 +60,8 @@ def get_shortlisted_companies(chat_id):
         if shortlisted_companies == "":
             return f"No companies shortlisted for registration number {reg_number}."
 
-        # Otherwise, split the companies by comma and return them
+        # Otherwise, split the companies by comma and return them line by line
         companies_list = shortlisted_companies.split(",") if shortlisted_companies else []
-        return f"Shortlisted companies for {reg_number}: {', '.join(companies_list)}"
+        return f"Shortlisted companies for {reg_number}:\n" + "\n".join(companies_list)
     else:
-        return f"Error: Unable to retrieve data for registration number associated with chat ID {chat_id}"
-
-
-def get_all_registered_numbers():
-    """Retrieve all registered numbers from the users table."""
-    response = supabase.table('users').select('reg_number').execute()
-    return [reg['reg_number'] for reg in response.data] if response.data else []
+        return f"No data found.\nPlease register first using /register <registration_number>"
