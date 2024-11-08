@@ -1,4 +1,3 @@
-import os
 import logging
 from telegram.ext import Application, CommandHandler
 from bot_commands import start, help, live, status, register, delete
@@ -27,17 +26,7 @@ def run_bot():
     application.add_handler(CommandHandler("register", register))
     application.add_handler(CommandHandler("delete", delete))
 
-    # Set up webhook for deployment on Render
-    port = int(os.environ.get("PORT", "8443"))
-    application.run_webhook(
-        listen="0.0.0.0",
-        port=port,
-        url_path=bot_token,
-        webhook_url=f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/{bot_token}"
-    )
+    # Run the bot
+    application.run_polling()
 
-# Directly run the bot
-if __name__ == '__main__':
-    run_bot()
-
-
+run_bot()
