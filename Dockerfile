@@ -1,5 +1,7 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11-slim
+FROM python:3.13-slim
+
+ENV TZ="Asia/Kolkata"
 
 # Set the working directory in the container
 WORKDIR /app
@@ -10,8 +12,8 @@ COPY . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port the app runs on (optional, for HTTP servers)
-EXPOSE 80
+# Expose port (optional, not necessary for Telegram bot but for debugging)
+EXPOSE 8080
 
 # Run the bot when the container starts
-CMD ["python", "main.py"]
+ENTRYPOINT ["python", "main.py"]

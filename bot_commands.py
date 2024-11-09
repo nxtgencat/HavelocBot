@@ -4,7 +4,7 @@ from db import delete_user_data, register_user, get_shortlisted_companies
 async def start(update, context):
     """Handle /start command."""
     await update.message.reply_text(
-        "Welcome to the bot! Use /help to see the available commands."
+        "Welcome to the bot! \nUse /help to see the available commands."
     )
 
 
@@ -14,7 +14,7 @@ async def help(update, context):
         "Here are the available commands:\n"
         "/live - Check status of bot\n"
         "/status - Check your shortlisted status\n"
-        "/register <reg_number> - Register with your registration number\n"
+        "/register Register with your registration number\n"
         "/delete - Delete your data\n"
     )
     await update.message.reply_text(help_text)
