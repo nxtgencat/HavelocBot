@@ -7,6 +7,10 @@ The **Haveloc Telegram Bot** is a Python-based Telegram bot designed to assist u
 - **Start and Help Commands**: Provides basic information and assistance on how to use the bot.
 - **Live Status Check**: Allows users to check the live status of services.
 - **Registration and Management**: Commands to register, delete, and manage user registrations.
+- 
+## Docker Integration
+
+This project includes Docker support, making it easy to containerize and run the bot. The Dockerfile sets up a Python environment and prepares the bot to be run in a Docker container.
 
 ## Prerequisites
 
