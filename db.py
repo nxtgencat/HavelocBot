@@ -8,7 +8,7 @@ load_dotenv()
 
 # Load environment variables from .env file
 supabase_url = os.getenv("SUPABASE_URL")
-supabase_key = os.getenv("SUPABASE_KEY")
+supabase_key = os.getenv("SUPABASE_API_KEY")
 
 # Initialize the Supabase client
 supabase = create_client(supabase_url, supabase_key)

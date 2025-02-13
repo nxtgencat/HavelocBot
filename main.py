@@ -1,26 +1,15 @@
-import logging
 import os
-
 from dotenv import load_dotenv
 from telegram.ext import Application, CommandHandler
 from bot_commands import start, help, live, status, register, delete
-
-# Configure the logger
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.FileHandler("haveloc_bot.log"),
-        logging.StreamHandler()
-    ]
-)
+from logger import logger
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Get the bot token from environment variables
 bot_token = os.getenv("TELEGRAM_BOT_TOKEN")
+
 
 def run_bot():
     """Run the bot with webhook settings."""
@@ -38,5 +27,6 @@ def run_bot():
 
     # Run the bot
     application.run_polling()
+
 
 run_bot()
